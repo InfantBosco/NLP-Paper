@@ -1,0 +1,11 @@
+experiment_name: "baseline_glove"
+seed: 42
+data:
+  dataset_name: "stsb"
+  dataset_path: "data/stsbenchmark.tsv.gz"
+  split: "test"
+model:
+  type: "averaged_embeddings"
+  embedding_dim: 300
+  embedding_source: "glove.6B.300d"
+output_dir: "experiments/results/baseline_glove"

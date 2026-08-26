@@ -1,0 +1,18 @@
+experiment_name: "efficiency_benchmark"
+corpus_sizes: [100, 1000, 10000]
+batch_size: 32
+max_seq_length: 128
+device: "cuda" # fallback to cpu
+models_to_compare:
+  - name: "cross_encoder_bert"
+    type: "cross_encoder"
+    encoder: "bert-base-uncased"
+  - name: "sbert_bi_encoder_standard"
+    type: "bi_encoder"
+    smart_batching: false
+    encoder: "bert-base-uncased"
+  - name: "sbert_bi_encoder_smart"
+    type: "bi_encoder"
+    smart_batching: true
+    encoder: "bert-base-uncased"
+output_dir: "experiments/results/benchmark"

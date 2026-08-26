@@ -1,0 +1,10 @@
+experiment_name: "vanilla_bert_pooling"
+seed: 42
+data:
+  dataset_name: "stsb"
+  dataset_path: "data/stsbenchmark.tsv.gz"
+  split: "test"
+model:
+  encoder_name: "bert-base-uncased"
+  pooling_mode: "mean" # Options: mean, cls, max
+output_dir: "experiments/results/vanilla_bert_pooling"

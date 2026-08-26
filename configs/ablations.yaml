@@ -1,0 +1,12 @@
+experiment_name: "pooling_and_concat_ablations"
+seed: 42
+pooling_modes: ["mean", "max", "cls"]
+concatenation_modes:
+  - "u_v"
+  - "absdiff"
+  - "mult"
+  - "absdiff_mult"
+  - "u_v_mult"
+  - "u_v_absdiff"
+  - "u_v_absdiff_mult"
+output_dir: "experiments/results/ablations"
