@@ -1,0 +1,14 @@
+# Project Assumptions & Ambiguities Matrix
+
+This document tracks all ambiguities, assumptions, and discrepancies between the Sentence-BERT research paper and the official reference implementation, along with our mitigation decisions and verification protocols.
+
+| ID | Assumption or Ambiguity | Source | Decision | Risk | How It Will Be Tested |
+|---|---|---|---|---|---|
+| ASM-01 | **Triplet Loss Margin:** Paper specifies margin $\epsilon = 1.0$ (Section 3), while official code `TripletLoss.py` defaults to `triplet_margin = 5.0`. | Paper vs Code Discrepancy | Use `margin = 1.0` as primary reproduction target matching paper, and include `margin = 5.0` as an explicit ablation. | Low | Run triplet loss unit tests (`test_losses.py`) and perform hyperparameter comparison script. |
+| ASM-02 | **STSb Target Normalization:** Paper states STSb scores range 0-5. Code normalizes label by dividing by 5.0 ($score / 5.0$). | Official Code (`training_nli.py` L89) | Adopt score normalization $score / 5.0$ to map targets to $[0, 1]$ range matching sigmoid/cosine range. | Low | Verify dataset label validation script (`scripts/prepare_data.py`). |
+| ASM-03 | **Optimizer & Weight Decay:** Paper mentions Adam optimizer ($lr=2e-5$). Modern practice uses AdamW with weight decay $0.01$. | Paper / Standard Practice | Use `AdamW` with $lr=2e-5$ and linear warmup over 10% steps. | Low | Compare convergence on NLI dev set. |
+| ASM-04 | **Sequence Length Truncation:** Max sequence length is not explicitly capped in Section 3.1. | Inferred / Standard Practice | Set default max sequence length to 128 tokens for NLI fine-tuning to balance VRAM usage and text coverage. | Medium | Evaluate coverage of NLI text lengths in `scripts/prepare_data.py`. |
+| ASM-05 | **Hardware VRAM Limits:** Paper evaluated batch size 16 on V100 GPU (16+ GB VRAM). Our GPU is RTX 2050 (4 GB VRAM). | Hardware Constraint | Use batch size 16 with mixed precision (`fp16`/`bf16`) or gradient accumulation if required. | Medium | Benchmark memory footprint and throughput in `test_model_shapes.py`. |
+| ASM-06 | **NLI Target Label Encoding:** Label ordering in classification head. | Official Code (`NLIDataReader.py`) | Use canonical mapping `{"contradiction": 0, "entailment": 1, "neutral": 2}`. | Low | Verify confusion matrix and classification metric outputs. |
+| ASM-07 | **Evaluation Metric Alignment:** Paper evaluates cosine similarity using Spearman rank correlation $\rho \times 100$. | Paper Section 4 | Use scipy `spearmanr` on cosine similarity values for all STS evaluation benchmarks. | Low | Unit test metric calculation against reference implementation in `test_similarity.py`. |
+| ASM-08 | **Smart Batching Strategy:** Sentences grouped by length to minimize padding tokens. | Paper Section 7 & Code | Implement custom `SmartBatchingCollate` in data collator module. | Low | Benchmark inference speed in `scripts/benchmark_similarity.py`. |
