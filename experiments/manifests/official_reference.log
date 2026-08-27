@@ -1,0 +1,43 @@
+[2026-08-27 22:02:20] [INFO] [official_reference]: === Stage 9 — Official Reference Run & Audit ===
+[2026-08-27 22:02:20] [INFO] [official_reference]: Target path: D:\Github Repo\NLP - Paper\official_reference\sentence-transformers-v0.3.9
+[2026-08-27 22:02:20] [INFO] [official_reference]: Tag:         v0.3.9
+[2026-08-27 22:02:25] [INFO] [official_reference]: Manifest successfully created -> experiments/manifests/official_reference_manifest.json
+[2026-08-27 22:02:25] [INFO] [official_reference]: 
+--- HISTORICAL OFFICIAL CODE AUDIT SUMMARY ---
+[2026-08-27 22:02:25] [INFO] [official_reference]: Executable:  False
+[2026-08-27 22:02:25] [INFO] [official_reference]: Error:       AttributeError: module transformers has no attribute AdamW
+[2026-08-27 22:02:25] [INFO] [official_reference]: File:        D:\Github Repo\NLP - Paper\.venv\Lib\site-packages\transformers\utils\import_utils.py:2760
+[2026-08-27 22:02:25] [INFO] [official_reference]: Conflict:    Historical v0.3.9 pins 'transformers>=3.1.0,<3.6.0'. Modern environment uses 'transformers>=4.30.0' where 'transformers.AdamW' was removed in favor of 'torch.optim.AdamW'.
+[2026-08-27 22:02:55] [INFO] [official_reference]: === Stage 9 - Official Reference Run & Audit ===
+[2026-08-27 22:02:55] [INFO] [official_reference]: Target path: D:\Github Repo\NLP - Paper\official_reference\sentence-transformers-v0.3.9
+[2026-08-27 22:02:55] [INFO] [official_reference]: Tag:         v0.3.9
+[2026-08-27 22:03:01] [INFO] [official_reference]: Manifest successfully created -> experiments/manifests/official_reference_manifest.json
+[2026-08-27 22:03:01] [INFO] [official_reference]: 
+--- HISTORICAL OFFICIAL CODE AUDIT SUMMARY ---
+[2026-08-27 22:03:01] [INFO] [official_reference]: Executable:  False
+[2026-08-27 22:03:01] [INFO] [official_reference]: Error:       AttributeError: module transformers has no attribute AdamW
+[2026-08-27 22:03:01] [INFO] [official_reference]: File:        D:\Github Repo\NLP - Paper\.venv\Lib\site-packages\transformers\utils\import_utils.py:2760
+[2026-08-27 22:03:01] [INFO] [official_reference]: Conflict:    Historical v0.3.9 pins 'transformers>=3.1.0,<3.6.0'. Modern environment uses 'transformers>=4.30.0' where 'transformers.AdamW' was removed in favor of 'torch.optim.AdamW'.
+[2026-08-27 22:03:24] [INFO] [official_reference]: === Stage 9 - Official Reference Run & Audit ===
+[2026-08-27 22:03:24] [INFO] [official_reference]: Target path: D:\Github Repo\NLP - Paper\official_reference\sentence-transformers-v0.3.9
+[2026-08-27 22:03:24] [INFO] [official_reference]: Tag:         v0.3.9
+[2026-08-27 22:03:29] [INFO] [official_reference]: Manifest successfully created -> experiments/manifests/official_reference_manifest.json
+[2026-08-27 22:03:29] [INFO] [official_reference]: 
+--- HISTORICAL OFFICIAL CODE AUDIT SUMMARY ---
+[2026-08-27 22:03:29] [INFO] [official_reference]: Executable:  False
+[2026-08-27 22:03:29] [INFO] [official_reference]: Error:       AttributeError: module transformers has no attribute AdamW
+[2026-08-27 22:03:29] [INFO] [official_reference]: File:        D:\Github Repo\NLP - Paper\.venv\Lib\site-packages\transformers\utils\import_utils.py:2760
+[2026-08-27 22:03:29] [INFO] [official_reference]: Conflict:    Historical v0.3.9 pins 'transformers>=3.1.0,<3.6.0'. Modern environment uses 'transformers>=4.30.0' where 'transformers.AdamW' was removed in favor of 'torch.optim.AdamW'.
+[2026-08-27 22:03:44] [INFO] [official_reference]: === Stage 9 - Official Reference Run & Audit ===
+[2026-08-27 22:03:44] [INFO] [official_reference]: Target path: D:\Github Repo\NLP - Paper\official_reference\sentence-transformers-v0.3.9
+[2026-08-27 22:03:44] [INFO] [official_reference]: Tag:         v0.3.9
+[2026-08-27 22:05:48] [INFO] [official_reference]: === Stage 9 - Official Reference Run & Audit ===
+[2026-08-27 22:05:48] [INFO] [official_reference]: Target path: D:\Github Repo\NLP - Paper\official_reference\sentence-transformers-v0.3.9
+[2026-08-27 22:05:48] [INFO] [official_reference]: Tag:         v0.3.9
+[2026-08-27 22:05:54] [INFO] [official_reference]: Manifest successfully created -> experiments/manifests/official_reference_manifest.json
+[2026-08-27 22:05:54] [INFO] [official_reference]: 
+--- HISTORICAL OFFICIAL CODE AUDIT SUMMARY ---
+[2026-08-27 22:05:54] [INFO] [official_reference]: Executable:  False
+[2026-08-27 22:05:54] [INFO] [official_reference]: Error:       AttributeError: module transformers has no attribute AdamW
+[2026-08-27 22:05:54] [INFO] [official_reference]: File:        D:\Github Repo\NLP - Paper\.venv\Lib\site-packages\transformers\utils\import_utils.py:2760
+[2026-08-27 22:05:54] [INFO] [official_reference]: Conflict:    Historical v0.3.9 pins 'transformers>=3.1.0,<3.6.0'. Modern environment uses 'transformers>=4.30.0' where 'transformers.AdamW' was removed in favor of 'torch.optim.AdamW'.
