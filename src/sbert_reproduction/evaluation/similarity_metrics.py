@@ -100,6 +100,11 @@ class EvaluationRecord:
     experiment_name: str
     model_description: str
     result_source: str   # PAPER | OFFICIAL_CODE | INDEPENDENT_REPRODUCTION | EXTENSION
+    model: str = ""
+
+    def __post_init__(self):
+        if not self.model:
+            self.model = self.model_description
 
     # Data
     dataset: str = "STSBenchmark"
