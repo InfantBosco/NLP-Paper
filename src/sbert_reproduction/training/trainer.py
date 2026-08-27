@@ -256,7 +256,7 @@ class SBERTTrainer:
             config      = self.config,
             filename    = filename,
         )
-        self._log.info(f"  Checkpoint saved → {path}")
+        self._log.info(f"  Checkpoint saved -> {path}")
         return path
 
     # ------------------------------------------------------------------
@@ -362,7 +362,7 @@ class SBERTTrainer:
         summary_path = os.path.join(self.output_dir, "training_summary.json")
         with open(summary_path, "w", encoding="utf-8") as fh:
             json.dump(summary, fh, indent=2)
-        self._log.info(f"Training complete. Summary saved → {summary_path}")
+        self._log.info(f"Training complete. Summary saved -> {summary_path}")
         return summary
 
     # ------------------------------------------------------------------

@@ -84,7 +84,7 @@ def save_results(results: List[Dict[str, Any]], output_dir: str, logger) -> None
 
     json_path = os.path.join(output_dir, "baseline_results.json")
     save_json({"baselines": results}, json_path)
-    logger.info(f"Saved JSON results → {json_path}")
+    logger.info(f"Saved JSON results -> {json_path}")
 
     csv_path = os.path.join(output_dir, "baseline_results.csv")
     if results:
@@ -98,7 +98,7 @@ def save_results(results: List[Dict[str, Any]], output_dir: str, logger) -> None
             writer = csv.DictWriter(fh, fieldnames=flat_keys, extrasaction="ignore")
             writer.writeheader()
             writer.writerows(results)
-        logger.info(f"Saved CSV  results → {csv_path}")
+        logger.info(f"Saved CSV  results -> {csv_path}")
 
     # Print summary table to console
     logger.info("\n{'='*70}")

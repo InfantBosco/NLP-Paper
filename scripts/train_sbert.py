@@ -229,7 +229,7 @@ def main():
         command     = " ".join(sys.argv),
     )
     manifest.save_manifest()
-    logger.info(f"Experiment manifest saved → {output_dir}/manifest.json")
+    logger.info(f"Experiment manifest saved -> {output_dir}/manifest.json")
 
     # ------------------------------------------------------------------
     # Device
@@ -368,7 +368,7 @@ def main():
                 "seed":       seed,
                 "result_source": "INDEPENDENT_REPRODUCTION",
             }, fh, indent=2)
-        logger.info(f"Final test metrics saved → {preds_path}")
+        logger.info(f"Final test metrics saved -> {preds_path}")
 
 
 if __name__ == "__main__":

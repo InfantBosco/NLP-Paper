@@ -37,6 +37,7 @@ experiments/metrics/
 experiments/predictions/
 experiments/figures/
 experiments/onnx/
+experiments/results/
 *.bin
 *.pt
 *.pth
