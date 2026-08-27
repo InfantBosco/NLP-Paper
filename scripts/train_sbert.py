@@ -352,7 +352,7 @@ def main():
 
     elapsed = time.perf_counter() - t_start
     logger.info(f"Training completed in {elapsed:.1f}s")
-    logger.info(f"Best Spearman ρ: {summary['best_metric']:.2f}")
+    logger.info(f"Best Spearman rho: {summary['best_metric']:.2f}")
     logger.info(f"Best checkpoint: {summary['best_checkpoint']}")
 
     # Save predictions on best checkpoint if available

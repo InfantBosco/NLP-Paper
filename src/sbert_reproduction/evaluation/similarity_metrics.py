@@ -56,7 +56,7 @@ def compute_sts_metrics(
     gold_labels: np.ndarray,
 ) -> dict:
     """
-    Compute Spearman ρ, Pearson r, MSE, and MAE between predictions and labels.
+    Compute Spearman rho, Pearson r, MSE, and MAE between predictions and labels.
 
     Both arrays are expected to be in the same scale (either both raw or both
     normalised — the caller is responsible for consistent scaling).

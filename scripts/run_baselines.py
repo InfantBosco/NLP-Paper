@@ -11,7 +11,7 @@ Baselines:
 
 Each baseline reports:
   description, configuration, dataset split, embedding size,
-  parameter count, Spearman ρ, Pearson r, MSE, MAE,
+  parameter count, Spearman rho, Pearson r, MSE, MAE,
   inference time, peak memory, random seed, limitations.
 
 Results are saved to:
