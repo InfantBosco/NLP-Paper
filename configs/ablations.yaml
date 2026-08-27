@@ -1,12 +1,69 @@
-experiment_name: "pooling_and_concat_ablations"
+# Ablation study configuration matrix
+# Stage 12 — run with: python scripts/run_ablation.py --config configs/ablations.yaml
+
+experiment_name: "sbert_ablations"
 seed: 42
-pooling_modes: ["mean", "max", "cls"]
-concatenation_modes:
-  - "u_v"
-  - "absdiff"
-  - "mult"
-  - "absdiff_mult"
-  - "u_v_mult"
-  - "u_v_absdiff"
-  - "u_v_absdiff_mult"
-output_dir: "experiments/results/ablations"
+data_dir: "data"
+output_dir: "experiments/ablations"
+
+# Each entry defines one ablation run.
+# Change one factor at a time; all others use the base config.
+base:
+  encoder_name: "bert-base-uncased"
+  pooling_mode: "mean"
+  max_seq_length: 128
+  batch_size: 16
+  learning_rate: 2.0e-5
+  epochs: 1
+  objective: "classification"
+  num_labels: 3
+  concatenation_mode: "u_v_absdiff"
+
+ablations:
+  # Ablation 1: Pooling strategy (paper Table 1)
+  - name: "pooling_cls"
+    hypothesis: "CLS pooling will underperform mean pooling for STS."
+    changed_factor: "pooling_mode"
+    pooling_mode: "cls"
+
+  - name: "pooling_mean"
+    hypothesis: "Mean pooling is the best general-purpose strategy."
+    changed_factor: "pooling_mode"
+    pooling_mode: "mean"
+
+  - name: "pooling_max"
+    hypothesis: "Max pooling may capture peak features but lose average semantics."
+    changed_factor: "pooling_mode"
+    pooling_mode: "max"
+
+  # Ablation 2: Learning rate
+  - name: "lr_1e5"
+    hypothesis: "1e-5 may underfit within 1 epoch."
+    changed_factor: "learning_rate"
+    learning_rate: 1.0e-5
+
+  - name: "lr_2e5"
+    hypothesis: "2e-5 is the paper default and should perform best."
+    changed_factor: "learning_rate"
+    learning_rate: 2.0e-5
+
+  - name: "lr_5e5"
+    hypothesis: "5e-5 may cause instability."
+    changed_factor: "learning_rate"
+    learning_rate: 5.0e-5
+
+  # Ablation 3: Batch size
+  - name: "batch_8"
+    hypothesis: "Smaller batch may give noisier gradients."
+    changed_factor: "batch_size"
+    batch_size: 8
+
+  - name: "batch_16"
+    hypothesis: "Batch 16 is the paper default."
+    changed_factor: "batch_size"
+    batch_size: 16
+
+  - name: "batch_32"
+    hypothesis: "Larger batch may smooth gradients."
+    changed_factor: "batch_size"
+    batch_size: 32
