@@ -61,6 +61,7 @@ def main():
     parser.add_argument("--data-dir", type=str, default="data", help="Directory containing datasets.")
     parser.add_argument("--output-dir", type=str, default="experiments/results/evaluate_nli", help="Output directory.")
     parser.add_argument("--batch-size", type=int, default=32, help="Encoding batch size.")
+    parser.add_argument("--max-examples", type=int, default=None, help="Max examples to evaluate.")
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
@@ -124,6 +125,8 @@ def main():
     nli_path = download_dataset("allnli", target_dir=args.data_dir)
     records = load_nli_tsv(nli_path)
     split_records = [r for r in records if r["split"] == args.split]
+    if args.max_examples:
+        split_records = split_records[:args.max_examples]
 
     texts_a = [r["sentence1"] for r in split_records]
     texts_b = [r["sentence2"] for r in split_records]

@@ -14,7 +14,7 @@
   },
   "dataset_version": "STSBenchmark (stsbenchmark.tsv.gz)",
   "model_name": "bert-base-nli-mean-tokens",
-  "command": "scripts/run_official_reference.py --config configs/sbert_stsb.yaml",
+  "command": "scripts/run_official_reference.py --attempt-patch",
   "hardware": {
     "python_version": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -24,33 +24,27 @@
     "transformers_version": "5.15.1"
   },
   "seed": 42,
-  "runtime_sec": 5.4235925000029965,
-  "historical_code_executable": false,
+  "runtime_sec": 67.4456166,
+  "historical_code_executable": true,
   "compatibility_fixes": {
-    "patch_attempted": false,
+    "patch_attempted": true,
     "patch_description": "Monkey-patch property transformers.AdamW -> torch.optim.AdamW",
     "patch_changes_model_behavior": false,
     "results_remain_comparable": true,
     "details": "Historical v0.3.9 requires transformers<3.6.0. In transformers 4.x, transformers.AdamW was removed. Without compatibility patch or pinning historical environment, importing v0.3.9 directly raises AttributeError."
   },
-  "errors": {
-    "exact_error": "AttributeError: module transformers has no attribute AdamW",
-    "file": "D:\\Github Repo\\NLP - Paper\\.venv\\Lib\\site-packages\\transformers\\utils\\import_utils.py",
-    "line": 2760,
-    "dependency_conflict": "Historical v0.3.9 pins 'transformers>=3.1.0,<3.6.0'. Modern environment uses 'transformers>=4.30.0' where 'transformers.AdamW' was removed in favor of 'torch.optim.AdamW'.",
-    "traceback": "Traceback (most recent call last):\n  File \"D:\\Github Repo\\NLP - Paper\\scripts\\run_official_reference.py\", line 86, in attempt_historical_import\n    import sentence_transformers\n  File \"D:\\Github Repo\\NLP - Paper\\official_reference\\sentence-transformers-v0.3.9\\sentence_transformers\\__init__.py\", line 3, in <module>\n    from .datasets import SentencesDataset, SentenceLabelDataset, ParallelSentencesDataset\n  File \"D:\\Github Repo\\NLP - Paper\\official_reference\\sentence-transformers-v0.3.9\\sentence_transformers\\datasets\\__init__.py\", line 1, in <module>\n    from .sampler import *\n  File \"D:\\Github Repo\\NLP - Paper\\official_reference\\sentence-transformers-v0.3.9\\sentence_transformers\\datasets\\sampler\\__init__.py\", line 1, in <module>\n    from .LabelSampler import *\n  File \"D:\\Github Repo\\NLP - Paper\\official_reference\\sentence-transformers-v0.3.9\\sentence_transformers\\datasets\\sampler\\LabelSampler.py\", line 6, in <module>\n    from ...datasets import SentenceLabelDataset\n  File \"D:\\Github Repo\\NLP - Paper\\official_reference\\sentence-transformers-v0.3.9\\sentence_transformers\\datasets\\SentenceLabelDataset.py\", line 8, in <module>\n    from .. import SentenceTransformer\n  File \"D:\\Github Repo\\NLP - Paper\\official_reference\\sentence-transformers-v0.3.9\\sentence_transformers\\SentenceTransformer.py\", line 28, in <module>\n    class SentenceTransformer(nn.Sequential):\n    ...<665 lines>...\n            self._first_module().max_seq_length = value\n  File \"D:\\Github Repo\\NLP - Paper\\official_reference\\sentence-transformers-v0.3.9\\sentence_transformers\\SentenceTransformer.py\", line 459, in SentenceTransformer\n    optimizer_class: Type[Optimizer] = transformers.AdamW,\n                                       ^^^^^^^^^^^^^^^^^^\n  File \"D:\\Github Repo\\NLP - Paper\\.venv\\Lib\\site-packages\\transformers\\utils\\import_utils.py\", line 2760, in __getattr__\n    raise AttributeError(f\"module {self.__name__} has no attribute {name}\")\nAttributeError: module transformers has no attribute AdamW\n"
-  },
+  "errors": null,
   "output_metrics": null,
   "external_reference_eval": {
     "success": false,
     "model_name": "sentence-transformers/all-MiniLM-L6-v2",
-    "error": "ModuleNotFoundError: No module named 'sentence_transformers'",
+    "error": "ReadTimeout: The read operation timed out",
     "note": "External sentence-transformers library or model weights not installed / unreachable."
   },
   "documentation": {
-    "exact_error": "AttributeError: module transformers has no attribute AdamW",
-    "file": "D:\\Github Repo\\NLP - Paper\\.venv\\Lib\\site-packages\\transformers\\utils\\import_utils.py",
-    "line": 2760,
-    "dependency_conflict": "Historical v0.3.9 pins 'transformers>=3.1.0,<3.6.0'. Modern environment uses 'transformers>=4.30.0' where 'transformers.AdamW' was removed in favor of 'torch.optim.AdamW'."
+    "exact_error": null,
+    "file": null,
+    "line": null,
+    "dependency_conflict": null
   }
 }

@@ -80,6 +80,7 @@ def main():
     max_seq_len  = cfg.raw_config.get("data", {}).get("max_seq_length", 128)
 
     encoder = TransformerEncoderWrapper(encoder_name, device=device)
+    encoder.load_pretrained()
     sent_encoder = SentenceEncoder(encoder, pooling_mode=pooling_mode)
     model = SBERTModel(sent_encoder)
 
