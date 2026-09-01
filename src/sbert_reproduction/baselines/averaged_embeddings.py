@@ -71,30 +71,53 @@ class AveragedWordEmbeddingsBaseline:
         self._actual_source = "not_loaded"
 
     # ------------------------------------------------------------------
-    def load_glove(self) -> bool:
+    def load_glove(self, data_dir: str = "data") -> bool:
         """
-        Attempt to load GloVe 6B 300d via torchtext.
+        Attempt to load GloVe vectors from disk or via gensim.downloader.
 
         Returns True on success, False on failure.
         """
+        import os
+
+        glove_dir = os.path.join(data_dir, "glove")
+        os.makedirs(glove_dir, exist_ok=True)
+        txt_filename = f"glove.6B.{self.dim}d.txt"
+        txt_path = os.path.join(glove_dir, txt_filename)
+
+        # 1. Try loading from existing text file
+        if os.path.exists(txt_path):
+            try:
+                print(f"[AveragedEmbeddings] Loading GloVe embeddings from {txt_path}...")
+                count = 0
+                with open(txt_path, "r", encoding="utf-8") as f:
+                    for line in f:
+                        parts = line.rstrip().split(" ")
+                        word = parts[0]
+                        vec = np.array([float(x) for x in parts[1:]], dtype=np.float32)
+                        self.embedding_dict[word] = vec
+                        count += 1
+                self._actual_source = f"glove.6B.{self.dim}d"
+                print(f"[AveragedEmbeddings] Successfully loaded {count:,} GloVe vectors ({self.dim}d).")
+                return True
+            except Exception as exc:
+                print(f"[AveragedEmbeddings] Error reading {txt_path}: {exc}")
+
+        # 2. Try loading via gensim.downloader
         try:
-            from torchtext.vocab import GloVe
-            glove = GloVe(name="6B", dim=self.dim)
-            for token, idx in glove.stoi.items():
-                self.embedding_dict[token] = glove.vectors[idx].numpy()
-            self.dim = self.dim
-            self._actual_source = "glove.6B.300d"
-            print(f"[AveragedEmbeddings] Loaded GloVe 6B {self.dim}d "
-                  f"({len(self.embedding_dict):,} tokens)")
+            import gensim.downloader as api
+            model_name = f"glove-wiki-gigaword-{self.dim}" if self.dim in (50, 100, 200, 300) else "glove-wiki-gigaword-100"
+            print(f"[AveragedEmbeddings] Loading GloVe via gensim ({model_name})...")
+            glove_model = api.load(model_name)
+            for word in glove_model.key_to_index:
+                self.embedding_dict[word] = glove_model[word]
+            self.dim = glove_model.vector_size
+            self._actual_source = f"gensim.{model_name}"
+            print(f"[AveragedEmbeddings] Loaded {len(self.embedding_dict):,} GloVe vectors ({self.dim}d) via gensim.")
             return True
         except Exception as exc:
-            warnings.warn(
-                f"GloVe load failed ({exc}). "
-                "Falling back to random-initialised embeddings. "
-                "Results in this mode are meaningless for comparison.",
-                RuntimeWarning,
-            )
-            return False
+            warnings.warn(f"Gensim GloVe download failed: {exc}")
+
+        return False
 
     # ------------------------------------------------------------------
     def build_random_vocab(self, texts: List[str]) -> None:

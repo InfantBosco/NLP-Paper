@@ -29,7 +29,9 @@ ENV/
 # Data & Checkpoints (Do not commit large files)
 data/*.tsv
 data/*.gz
+data/*.zip
 data/*.json
+data/glove/
 data/processed/
 experiments/checkpoints/
 experiments/logs/
@@ -43,6 +45,7 @@ experiments/results/
 *.pth
 *.onnx
 *.safetensors
+*.zip
 
 # IDE & OS
 .vscode/

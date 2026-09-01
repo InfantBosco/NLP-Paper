@@ -1,11 +1,12 @@
 experiment_name: "sbert_nli_base"
 seed: 42
+objective: "classification"
 data:
   train_path: "data/AllNLI.tsv.gz"
   eval_path: "data/stsbenchmark.tsv.gz"
   max_seq_length: 128
 model:
-  encoder_name: "bert-base-uncased"
+  encoder_name: "sentence-transformers/bert-base-nli-mean-tokens"
   pooling_mode: "mean"
   concatenation_mode: "u_v_absdiff" # (u, v, |u-v|)
   num_labels: 3
@@ -15,7 +16,8 @@ training:
   learning_rate: 2.0e-5
   warmup_ratio: 0.1
   weight_decay: 0.01
-  fp16: true
+  fp16: false
   gradient_accumulation_steps: 1
   evaluation_steps: 1000
 output_dir: "experiments/checkpoints/sbert_nli_base"
+
