@@ -47,6 +47,14 @@ experiments/results/
 *.safetensors
 *.zip
 
+# Environment & Secrets
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # IDE & OS
 .vscode/
 .idea/
